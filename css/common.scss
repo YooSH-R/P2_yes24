@@ -1,0 +1,24 @@
+// 변수파일
+@use '_config' as *;
+
+// 공통서식
+body{
+  font-size: $t_size_m;
+  font-family: $font-family;
+  color: $b_color1;
+  background-color: $w_color;
+}
+a{
+  color: $b_color1;
+  text-decoration: none;
+}
+
+#toggle_btn{display: none;}
+
+// 모바일 버전
+@media (max-width: 480px) {
+
+  body{
+    font-size: $m_t_size_m !important;
+  }
+}

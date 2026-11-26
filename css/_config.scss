@@ -1,0 +1,55 @@
+
+// 변수들 모음
+
+// 구글폰트
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+// 기본 글꼴
+$font-family:'Nanum Gothic', sans-serif;
+
+// 글자크기 변수
+$t_size_s:12px;
+$t_size_m:14px;
+$t_size_l:16px;
+$t_size_xl:18px;
+$t_size_title:24px;
+$t_size_title_xl:32px;
+
+// 모바일 변수
+$m_t_size_ss: 0.75rem;       //12px(가장 최소 단위)
+$m_t_size_s: 0.875rem;       //14px
+$m_t_size_m:1rem; //기준     //16px
+$m_size_title_m: 1.125rem;  //18px
+$m_size_title_xl:1.25rem;   //20px
+
+// 컬러 변수
+$m_color:#0080ff; // main
+$g_color1:#ccc; // gray 진함
+$g_color3:#e5e5e5; // gray 중간
+$g_color2:#f5f5f5; // gray 연함
+$w_color:#fff; // white
+$b_color2:#111; // black 진함
+$b_color1:#333; // black 연함
+$r_color3:#aa0000; // red
+
+
+// 레이아웃 크기 변수
+$pc_layout: 1180px;
+$mobile_layout: 92%;  //모바일 layout변수
+$min-width: 360px;
+
+// 버튼 변수
+// 흰색바탕 버튼
+@mixin btn_w{
+  background-color:$w_color;
+  color:$m_color;
+  border:1px solid $m_color;
+  border-radius: 30px;
+}
+// 하늘색바탕 버튼
+@mixin btn_b{
+  background-color:$m_color;
+  color:$w_color;
+  border:1px solid $m_color;
+  border-radius: 30px;
+}

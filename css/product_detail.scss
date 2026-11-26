@@ -1,0 +1,686 @@
+
+// product_detail.scss
+
+@use '_config2' as *;
+
+// **************상품 개별 페이지*************
+#product_detail{
+  // 1198px로 감싸기
+  > .product_detail_outer{
+    width:$pc_layout;
+    margin:0 auto;
+
+    // 섹션 간 간격
+    > section{padding:100px 0; height:auto;}
+  }
+
+  // <!-- 콘텐츠1: 좌 - 책표지 & 우 - 설명 -->
+  .con1{
+    display:flex;
+    justify-content:space-between;
+
+    // 좌측 콘텐츠(책표지)
+    > div:first-child{
+      width:450px; height:650px;
+      background:#ccc;
+      box-shadow:0 0 10px rgba(0,0,0,0.2);
+
+      > img{width:100%; height:100%;}
+    }
+
+    // 우측 콘텐츠(설명, 가격 등)
+    > div:last-child{
+      width:450px; height:450px;
+      padding:100px 50px;
+
+      // 제목
+      > h2{font-size:$t_size_title; font-weight:bold;}
+
+      > p:first-of-type{ // 저자
+        display:flex; justify-content:space-between;
+        border-bottom:1px solid #b8b8b8;
+        padding:20px 0 10px 0;
+
+        > span{
+          color:#333; // 평가 개수
+          > i{color:#ffc300} // 별점 
+        }
+      }
+
+      > div:first-of-type{ // 가격, 공유, 찜 버튼
+        display:flex;
+        justify-content: space-between;
+        > p{ // 가격
+          margin-top:20px;
+          font-size:$t_size_title;
+        }
+
+        > div{ // 공유, 찜 버튼
+          display:flex;
+          flex-direction:column;
+          align-items:end;
+          margin: 20px 0;
+          > i, label{
+            background-color: $w_color;
+            border: solid 1px $g_color2;
+            margin-bottom:10px;
+            padding:12px 10px;
+            border-radius: 50%;
+            font-size:$t_size_l;
+            color:$g_color2;
+            display:inline-block;
+            cursor:pointer;
+            
+            &:first-child{ // 공유 버튼
+              border:1px solid $m_color;
+              color:$m_color;
+              &:hover{
+                background-color: $m_color;
+                color:#fff;
+              }
+            }
+
+            &:last-child{ // 찜 버튼
+              border:1px solid $g_color2;
+            }
+          }
+          
+          // 체크박스 안보이게
+          > input{display:none !important;}
+
+          // 체크시 빨간색 하트
+          .jjim_btn:checked + .jjim_btn_label{
+            color:$r_color;
+            border: 1px solid $r_color;
+            background-color: $w_color !important;
+          }
+        }
+      }
+
+      // 배송 시간
+      > p:last-of-type{color:$r_color;}
+
+      > form{
+        > div:first-child{ // 구매 수량, 가격
+          display:flex;
+          align-items:center;
+          justify-content: space-between;
+          padding-top:30px;
+  
+          > div{ // 구매 수량 조절 박스
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+            border:1px solid #9a9a9a;
+            border-radius:8px;
+            width:120px; height:35px;
+
+            > i{
+              color:#333;
+              font-weight:bold;
+              &:not(:nth-child(2)){cursor: pointer;}
+            }
+          }
+  
+          > p{font-size:$t_size_title; font-weight:bold;}
+        }
+        
+        // 장바구니, 구매하기 버튼
+        > div:last-child{
+          > div{
+            display:flex;
+            margin:30px 0;
+            justify-content: space-between;
+            > input{
+              @include btn_w;
+              cursor:pointer;
+              &:hover{background:#F5F5F5;}
+            }
+            > a{
+              @include btn_b;
+              cursor: pointer;
+              &:hover{background:#0076EB;}
+            }
+          }
+        }
+      }
+
+      // 결제혜택, 배송안내
+      > div:last-of-type{
+        border-top:1px solid #b8b8b8;
+        border-bottom:1px solid #b8b8b8;
+        padding:15px 0;
+        > p{
+          &:first-child{
+            padding-bottom:15px;
+            border-bottom:1px solid #b8b8b8;
+          }
+          &:last-child{padding-top:15px;}
+          > span{margin-left:40px;}
+        }
+      }
+    }
+  }
+
+  // <!-- 콘텐츠2: 함께보면 좋은 상품 -->
+  .con2{
+    // 구분선
+    border-top:1px solid #b8b8b8;
+    height:400px;
+
+    // 제목
+    h2{font-size:$t_size_title; font-weight:bold;}
+
+    // 책 & 책제목 & 가격
+    > ul{
+      margin-top:50px;
+      display:flex;
+      justify-content: space-between;
+      width:1180px;
+      > li{
+        width:140px;
+        font-size:$t_size_l;
+        > h3{margin-top:10px; line-height:20px;}
+        > p{margin-top:8px; font-weight:bold;}
+        > a > img{
+          width:140px; height:200px;
+          box-shadow:0 0 7px rgba(0,0,0,0.2);
+        }
+      }
+    }
+  }
+
+  // <!-- 탭메뉴 - 누르면 콘텐츠3/4/5로 이동 -->
+  .book_nav{
+    > ul{
+      width:1180px;
+      display:flex;
+      > li{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        width:100%; height:60px;
+        font-size:$t_size_title; font-weight:bold;
+        border:1px solid $g_color2;
+        cursor:pointer;
+
+        &:hover{
+          background:$m_color;
+          border:1px solid $m_color;
+          color:#fff;
+        }
+      }
+    }
+  }
+
+  // <!-- 콘텐츠3: 도서정보 -->
+  .con3{
+    > div{
+      border-bottom:1px solid #333;
+      > h2{ // 제목: 도서정보
+        font-size:$t_size_title;
+        font-weight:bold;
+        padding-bottom:20px;
+      }
+    }
+
+    // 펼쳐보기 누를 때 아래에 마진 생기게 하기
+    .open_margin{margin-bottom:35px;}
+
+    > article{ // 책소개, 저자소개, 목차
+      h3{font-size:$t_size_l;} // 제목
+
+      &:first-of-type{ // 책소개
+        > div{
+          border-bottom:1px solid #b8b8b8;
+          > h3{padding:35px 0;}
+        }
+
+        > p{padding:40px 30px; line-height:22px;}
+      }
+
+      &:not(:first-of-type){ // 저자소개, 목차 박스
+        border-top:1px solid #b8b8b8;
+
+        > div:first-child{ // 저자소개, 목차 이너박스
+          padding-top:35px;
+          height:100%;
+          display:flex;
+          justify-content: space-between;
+          align-items: center;
+
+          // 펼쳐보기, 접기 버튼
+          > p:first-of-type{cursor: pointer; transition:0.5s;}
+        }
+      }
+
+      &:nth-of-type(2){ // 저자소개 박스
+        > div:last-child{ // 누르면 나오는 저자소개 내용
+          padding:0 35px 35px 35px;
+        }
+      }
+
+      &:last-of-type{ // 목차 박스
+        > div:last-child{ // 누르면 나오는 목차 내용
+          padding:0 35px 35px 35px;
+          border-bottom:1px solid #b8b8b8;
+        }
+      }
+
+      // 목차 내용 가리기 & 줄간격
+      #author, #index{display:none; line-height:30px;}
+    }
+  }
+
+  // <!-- 콘텐츠4: 리뷰 -->
+  .con4{
+    > div{
+        border-bottom:1px solid #333;
+        
+        > h2{ // 제목: 리뷰
+          font-size:$t_size_title;
+          font-weight:bold;
+          padding-bottom:20px;
+      }
+    }
+    
+
+    > article{ // 큰박스(좌:이미지, 우:별점, 제목 등)
+      border-bottom:1px solid #b8b8b8;
+
+      > div{
+        height:100%;
+        padding:30px 0;
+        display:flex;
+        justify-content: space-between;
+
+        > img{ // 좌: 이미지
+          width:130px; height:130px;
+          box-shadow:0 0 5px rgba(0,0,0,0.2);
+        }
+  
+        > div{ // 우: 상(별점), 하(제목 등)이 있는 박스
+          width:1000px; height:100%;
+  
+          > span{ // 상(별점)
+            color:#ffc300;
+          }
+  
+          > div{ // 하[박스(좌 - 제목, 내용,  우 - 아이디, 날짜)]
+            display:flex;
+            justify-content:space-between;
+            padding-top:15px;
+  
+            > div{
+              &:first-child{ // 좌 - 제목, 내용
+                width:860px;
+  
+                // 오버시 더보기에 밑줄 생성
+                &:hover{
+                  .btn-more{
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                  }
+                }
+  
+                > h3{
+                  font-size:$t_size_l; font-weight: bold;
+                  margin-bottom:10px;
+                  line-height:20px;
+                }
+  
+                > p{
+                  line-height:20px;
+                  // 세 줄 이상 넘어가면 ...으로 표시
+                  display: -webkit-box;
+                  -webkit-line-clamp: 3; /* 보여줄 줄 수 */
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  
+                }
+  
+                // 더보기 누르면 붙는 클래스
+                .expanded {
+                  -webkit-line-clamp: initial; /* 제한 해제 */
+                  display: block; /* flex/box 해제 */
+                  overflow: visible;
+                }
+  
+                // 더보기 버튼 서식
+                > .btn-more{
+                  margin:0 auto;
+                  border:none;
+                  background:none;
+                  color:#6699cc;
+                  cursor: pointer;
+                  display:block;
+                  margin:0 auto;
+  
+                  > i{display:inline;}
+                }
+              }
+  
+              // 아이디, 작성일자
+              &:last-child{
+                > p{margin:10px 0;text-align: center;}
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+
+  // <!-- 콘텐츠5: 배송/반품/교환 안내 -->
+  .con5{
+    > div{
+      border-bottom:1px solid #333;
+
+      > h2{ // 제목: 배송/반품/교환 안내
+        font-size:$t_size_title;
+        font-weight:bold;
+        padding-bottom:20px;
+      }
+    }
+
+    // 펼쳐보기 누를 때 아래에 마진 생기게 하기
+    .open_margin{margin-bottom:35px;}
+
+    // 배송 안내, 반품/교환 안내
+    > article{ // 배송 안내, 반품/교환 안내 박스
+      &:last-child{border-top:1px solid #b8b8b8;}
+
+      > div:first-child{ // 배송 안내, 반품/교환 안내 이너박스
+        padding-top:35px;
+        height:100%;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+
+        // 제목
+        > h3{font-size:$t_size_l;}
+
+        // 펼쳐보기, 접기 버튼
+        > p:first-of-type{cursor: pointer; transition:0.5s;}
+      }
+
+      &:first-of-type{ // 배송 안내 박스
+        > div:last-child{ // 누르면 나오는 배송 안내 내용
+          padding:0 35px 35px 35px;
+        }
+      }
+
+      &:last-of-type{ // 반품/교환 안내 박스
+        border-bottom:1px solid #b8b8b8;
+        > div:last-child{ // 누르면 나오는 반품/교환 안내 내용
+          padding:0 35px 35px 35px;
+        }
+      }
+
+      // 배송 안내, 반품/교환 안내 내용 서식
+      #delivery, #refund{
+        display:none;
+        line-height:30px;
+        table{width:100%;}
+        th{background:$g_color4; border:1px solid $g_color3; padding:10px; vertical-align: middle;}
+        td{padding:10px;border:1px solid $g_color3;}
+        li{transform:translateX(10px);}
+      }
+    }
+  }
+
+  // 장바구니 클릭하면 나오는 모달
+  .cart_modal{
+    display:none;
+    position:fixed;
+    left:0; top:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.5);
+    z-index:9999;
+
+    > .cart_modal_box{
+      width:350px; padding:30px;
+      background:#fff;
+      border-radius: 10px;
+      text-align:center;
+      position:absolute;
+      left:50%; top:50%;
+      transform: translate(-50%, -50%);
+
+      > p{
+        margin-top:20px;
+        font-size: $t_size_l;
+        font-weight:bold;
+      }
+
+      > .cart_modal_btn_box{
+        margin-top:30px;
+
+        > button{
+          margin:10px;
+          padding:10px 15px;
+          cursor:pointer;
+          background:$m_color;
+          border:none;
+          color:#fff;
+          border-radius: 5px;
+
+          &:last-child{
+            background:#777;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ****************모바일 서식****************
+@media screen and (max-width:767px) {
+  #product_detail{
+    width:100%;
+    min-width:$min-width;
+    font-size:$m_t_size_s;
+
+    h2{font-size:$m_size_title_m !important;}
+
+    > .product_detail_outer{
+      width:100%;
+      > section, nav{width:100% !important;}
+      > section{padding:50px 0;}
+
+      > .con1{ // 콘텐츠1: 좌 - 책표지 & 우 - 설명
+        flex-wrap:wrap !important;
+        width:100%;
+        padding:0;
+        
+        > div{
+          &:first-child{ // 좌측 콘텐츠(책표지)
+            width:100%;
+            background:linear-gradient(to bottom, #ffa000, #896a28);
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            
+            > img{width:60%; max-width:330px; height:70%;}
+          }
+          
+          &:last-child{ // 우측 콘텐츠(설명, 가격 등)
+            @include mobile_layout;
+            padding-top:3.125rem;
+            position:relative;
+            height:380px;
+
+            > div:first-of-type{ // 가격, 공유, 찜 버튼
+
+              > p{font-size:$m_size_title_xl;}
+
+              > div{ // 공유, 찜 버튼
+                position:absolute;
+                right:0; top:-220px;
+                > i{background:#fff;}
+              }
+            }
+
+            > p:last-of-type{ // 저자
+              position:absolute;right:0; top:138px;
+            }
+
+            > form{
+              > div:first-child{ // 구매 수량, 가격
+                > p{font-size:$m_size_title_xl;}
+              }
+              > div:last-child{ // 장바구니, 구매하기 버튼
+                position:fixed;
+                bottom:0;left:0;
+                width:100%;
+                box-shadow:0 -3px 3px rgba(0,0,0,.2);
+                background:#fff;
+                z-index: 9999;
+                > div{
+                  margin:0; padding:15px;
+                  justify-content: space-evenly;
+                  > input, a{
+                    width:40%;
+                    border-radius: 8px;
+                  }
+                }
+              }
+            }
+
+            // 결제혜택, 배송안내
+            > div:last-of-type{margin-top:30px;}
+          }
+        }
+      }
+
+      > .con2{ // 콘텐츠2: 함께보면 좋은 상품
+
+        > div{
+          display:block;
+          width:$mobile_layout;
+          margin:0 auto;
+          margin-bottom:30px;
+        }
+
+        > ul{
+          width: $mobile_layout;
+          margin:0 auto;
+          flex-wrap:wrap;
+          > li{
+            width:43%;
+            &:last-child{display: none;}
+
+            > h3,p{
+              display: block;
+              width:100%;
+              font-size:$m_t_size_m;
+            }
+
+
+            > a > img{
+              width:100%; height:70%;
+              display: block;
+            }
+          }
+        }
+      }
+
+      > .book_nav{ // 탭메뉴 - 누르면 콘텐츠3/4/5로 이동
+        > ul{
+          width:100%;
+
+          > li{font-size:$m_size_title_m;}
+        }
+      }
+
+      > .con3{ // 콘텐츠3: 도서정보
+        > div{ // 제목: 도서정보
+          > h2{width:$mobile_layout; margin:0 auto;}
+        }
+
+        > article{ // 책소개, 저자소개, 목차
+          h3{font-size:$m_t_size_l;}
+          &:first-of-type{ // 책소개
+            h3{width:$mobile_layout; margin:0 auto;}
+          }
+
+          &:not(:first-of-type){ // 저자소개, 목차 박스
+            > div:first-child{ // 저자소개, 목차 이너박스
+              width:$mobile_layout;
+              margin-left: auto;
+              margin-right: auto;
+            }
+          }
+        }
+      }
+
+      > .con4{ // 콘텐츠4: 리뷰
+        > div > h2{width:$mobile_layout; margin:0 auto;}
+
+        > article{// 큰박스(좌:이미지, 우:별점, 제목 등)
+
+          > div{
+            width:$mobile_layout; margin:0 auto;
+
+            > img{ // 좌: 이미지
+              width:25%;
+            }
+
+            > div{ // 우: 상(별점), 하(제목 등)이 있는 박스
+              width:70%;
+
+              > div{ // 하[박스(좌 - 제목, 내용,  우 - 아이디, 날짜)]
+
+                > div{
+                  &:first-child{ // 좌 - 제목, 내용
+                    width:70%;
+                    
+
+                    > h3{font-size:$m_t_size_l;}
+                  }
+
+                  &:last-child{ // 우 - 아이디, 날짜
+                    transform:translateY(20px);
+                    > p{
+                      font-size:$m_t_size_s;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      > .con5{ // 콘텐츠5: 배송/반품/교환 안내
+        > div{ // 제목: 배송/반품/교환 안내
+          > h2{width:$mobile_layout; margin:0 auto;}
+        }
+
+        > article{ // 배송 안내, 반품/교환 안내
+          h3{font-size:$m_t_size_l;}
+
+          > div:first-child{ // 배송 안내, 반품/교환 안내 이너박스
+            width:$mobile_layout;
+            margin-left: auto;
+            margin-right: auto;
+          }
+          > div:last-child{ // 누르면 나오는 배송 안내, 반품/교환 안내 내용
+            padding-left:0;
+            padding-right:0;
+            width:$mobile_layout;
+            margin-left:auto; margin-right:auto;
+          }
+
+          #delivery, #refund{
+            li{padding-right:20px;}
+          }
+        }
+      }
+    }
+  }
+  
+  footer{margin-bottom:80px;}
+}

@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+.payment_box {
+  border: 2px solid #ccc;
+  width: 300px;
+  height: 408px;
+  border-radius: 9px;
+}
+.payment_box .payment_box_inner {
+  width: 258px;
+  margin: 0 auto;
+}
+.payment_box .payment_box_inner .p_box_title {
+  font-size: 24px;
+  color: #111;
+  font-weight: bold;
+  line-height: 80px;
+  border-bottom: 1px solid #ccc;
+}
+.payment_box .payment_box_inner .p_box_count {
+  font-size: 18px;
+  height: 140px;
+  border-bottom: 1px solid #ccc;
+}
+.payment_box .payment_box_inner .p_box_count > div .p_box_cont {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 0px;
+}
+.payment_box .payment_box_inner .p_box_count > div .sale {
+  color: #aa0000;
+}
+.payment_box .payment_box_inner .result_pay p {
+  font-size: 24px;
+  color: #111;
+  font-weight: bold;
+  line-height: 70px;
+  text-align: right;
+}
+.payment_box .payment_box_inner .result_pay p .g_txt {
+  font-size: #333;
+}
+.payment_box .payment_box_inner .result_pay input {
+  width: 100%;
+  height: 65px;
+  font-size: 24px;
+  color: #fff;
+  background-color: #0080ff;
+  border: none;
+  border-radius: 13px;
+  cursor: pointer;
+}
+.payment_box .payment_box_inner .result_pay input:hover {
+  background-color: #0076EB;
+}/*# sourceMappingURL=payment_box.css.map */

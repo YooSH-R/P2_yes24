@@ -1,0 +1,56 @@
+@use '_config' as *;
+// payment_box.scss
+// 주문예상 금액 박스
+.payment_box{
+  border: 2px solid $g_color1;
+  width: 300px;height: 408px;
+  border-radius: 9px;
+  .payment_box_inner{
+    width: 258px;
+    margin: 0 auto;
+
+    // 제목
+    .p_box_title{
+      font-size: $t_size_title;
+      color: $b_color2;
+      font-weight: bold;
+      line-height: 80px;
+      border-bottom: 1px solid $g_color1;
+    }
+    .p_box_count{
+      font-size: $t_size_xl;
+      height: 140px;
+      border-bottom: 1px solid $g_color1;
+      >div{
+        .p_box_cont{
+          display: flex; justify-content: space-between;
+          margin: 25px 0px;
+        }
+        .sale{color: $r_color3;}
+      }
+    }
+    .result_pay{
+      p{
+        font-size: $t_size_title;
+        color: $b_color2;
+        font-weight: bold;
+        line-height: 70px;
+        text-align: right;
+        .g_txt{font-size: $b_color1;}
+      }
+      input{
+        width: 100%;
+        height: 65px;
+        font-size: $t_size_title;
+        color: $w_color;
+        background-color: $m_color;
+        border: none;
+        border-radius: 13px;
+        cursor: pointer;
+        &:hover{
+          background-color: #0076EB;
+        }
+      }
+    }
+  }
+}

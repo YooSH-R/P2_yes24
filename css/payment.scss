@@ -1,0 +1,466 @@
+@use '_config' as *;
+// 결제하기 콘텐츠 부모 박스
+@mixin payment_list_box{
+  width: 100%;
+  border: 1px solid $g_color1;
+  border-radius: 9.9px;
+  margin-bottom: 30px;
+}
+// 자식 콘텐츠 크기
+@mixin payment_list_cont{
+  width: 700px; margin: 0 auto;
+}
+
+main{width: 100%; height: 100%; font-size: 16px;}
+
+//다른 결제 수단 체크박스 숨기기 
+#other{display: none;}
+
+// 결제하기 서식
+.payment_inner{
+  width: $pc_layout;
+  margin: 0 auto;
+  margin-bottom: 70px;
+  height: 100%;
+  position: relative;
+
+  // 섹션, 레전드 제목 숨기기
+  .payment_form_t, .payment_t_none{font-size: 0px;}
+
+  > .payment_form{
+    display: flex;
+    >.payment_box{
+      position: absolute;
+      right: 0px; top: 185px;
+      box-sizing: border-box;
+      width: 300px;height: 408px;
+      // 결제 박스 고정
+      &.fixed{
+        position: fixed !important;
+        top: 50px !important;
+        z-index: 9999 !important;
+      }
+    }
+  }
+  // 결제하기 콘텐츠 제목
+  .payment_list_title{
+    font-size: $t_size_xl;
+    font-weight: bold;
+    width: 740px; line-height: 80px;
+    margin: 0 auto;
+    border-bottom: 1px solid $g_color1;
+    text-indent: 20px;
+  }
+  // 컨텐츠 가운데
+  .cont_center{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  // 결제하기 콘텐츠 영역
+  .cont{position: relative;}
+  .payment_cont1{
+    @include payment_list_cont();
+    height: 142px;
+  }
+  .payment_cont2{
+    @include payment_list_cont();
+    height: 159px;
+  }
+  .payment_cont3{
+    @include payment_list_cont();
+    height: 80px;
+  }
+  
+
+  // 결제하기 제목
+  .payment_title{
+    height: 135px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $g_color1;
+    >h2{
+      font-size: $t_size_title_xl;
+      font-weight: bold;
+      color: $b_color2;
+    }
+    >.path{
+      font-size: $t_size_xl;
+      color:$g_color1;
+      display: flex;
+      >li{
+        &:nth-child(3){color: $b_color2;}
+      }
+    }
+  }
+
+  // 결제하기 항목
+  .payment_list{
+    width: 780px;
+    height: 100%;
+    margin-top: 51px;
+
+    // 배송지 | 홍길동
+    .delivery_address{
+      @include payment_list_box();
+      height: 223px;
+      >.payment_list_title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // 배송지입력 버튼
+        .modal_btn{
+          @include btn_w();
+          height: 30px;
+          width: 88px;
+          cursor: pointer;
+          &:hover{
+            @include btn_b();
+          }
+        }
+        .g_line{color:$g_color1;}
+      }
+      // 전화번호 주소 나오는곳
+      .address{
+        line-height: 30px;
+      }
+    }
+
+    // 배송 요청 사항
+    .request{
+      @include payment_list_box();
+      height: 223px;
+      input{
+        width: 700px;
+        height: 48px;
+        border-radius: 11px;
+        border: 1px solid $g_color1;
+        text-indent: 20px;
+      }
+    }
+
+    //결제수단
+    .payment_method{
+      @include payment_list_box();
+      height: 100%;
+      .pay_method{
+        line-height: 47px;
+      }
+      .other_payment{
+        line-height: 80px;
+        margin: 0 auto;
+        width: 700px;
+        >label{cursor: pointer;}
+        // 구분선
+        &::before{
+          content: '';
+          width: 740px;
+          height: 1px;
+          display: block;
+          background-color: $g_color1;
+          margin: 0 auto;
+          position: relative;
+          left: -20px;
+        }
+        .other_pay_list{margin-bottom: 30px;}
+      }
+      input[type='radio']{
+        color: $m_color;
+      }
+    }
+
+    // 현금영수증
+    .receipt{
+      @include payment_list_box();
+      height: 246px;
+      .receipt_method{
+        line-height: 47px;
+      }
+    }
+
+    //배송
+    .delivery{
+      @include payment_list_box();
+      height: 161px;
+      .del_method{
+        line-height: 40px;
+      }
+    }
+  }
+}
+
+// 다른결제수단
+.other_pay_list{
+  display: none;
+}
+// 다른결제수단이 체크라면
+#other:checked + .payment_inner .other_pay_list{
+  display: block;
+}
+
+
+// 배송지 등록 모달 서식
+.del_modal_bg{
+  width: 100%; height: 100%;
+  left: 0px; top: 0px;
+  background-color: rgba(0,0,0,.7);
+  position: fixed;
+  z-index: 10000;
+  .modal{
+    width: 600px;height: 530px;
+    position: absolute;
+    top:50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $w_color;
+    border-radius: 10px;
+    // 모달 이너 서식
+    .modal_inner{
+      width: 550px;
+      margin: 0 auto;
+      .modal_title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100px;
+        border-bottom: 1px solid $g_color1;
+        >h3{
+          color: $b_color2;
+          font-size: $t_size_title;
+          font-weight: bold;
+        }
+        >i.fa-x{
+          font-size: 20px;
+          cursor: pointer;
+        }
+      }
+      form{
+        legend{font-size: 0px;}
+        >fieldset{
+          p{margin: 10px 0;}
+          label{
+            font-size: $t_size_xl; font-weight: bold;
+            color: $b_color2;
+          }
+          input{
+            width: 100%; height: 40px;
+            border: 1px solid $g_color1;
+            border-radius: 9px;
+            text-indent: 20px;
+            // 저장 버튼
+            &[type='submit']{
+              position: absolute;
+              left: 50%; bottom: 30px;
+              transform: translateX(-50%);
+              margin: 0 auto;
+              width: 120px;
+              color: $w_color;
+              background-color: $m_color;
+              font-size: $t_size_xl;
+              text-indent: 0px;
+              cursor: pointer;
+              &:hover{
+                background-color: #0076EB;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.m_payment_box{display: none;}
+@media (max-width: 767px) {
+  footer{margin-bottom: 120px;}
+  .top_btn{bottom:10px !important; display: none;}
+  // 결제하기 모바일 서식
+  .payment_inner{
+    width: 100% !important;
+    // 결제하기 박스 / 경로
+    .payment_box,.path{display: none !important;}
+    // 제목
+    .payment_title_outer{width: 100%; height: 60px; border-bottom: 1px solid $g_color1; margin-bottom: 50px;}
+    .payment_title{
+      width: $mobile_layout;
+      min-width: $min-width;
+      margin: 0 auto;
+      height: 100%;
+      border: none;
+      >h2{
+        font-size: $m_size_title_xl;
+      }
+    }
+    .cont{width: 100%;}
+    .payment_list_title{
+      font-size: $m_size_title_m !important;
+      width: 100%;
+      line-height: 60px;
+    }
+    .payment_cont1{
+      width: 100% !important;
+      height: 140px;
+    }
+    .payment_cont2{
+      width: 100% !important;
+      height: 140px;
+    }
+    .payment_cont3{
+      width: 100% !important;
+      height: 80px;
+    }
+    .cont_center{font-size: $m_t_size_m !important; width: 93%; left: 50%; transform: translate(-50%,-50%);}
+    .payment_list{
+      width: $mobile_layout !important;
+      min-width: $min-width;
+      margin: 0 auto;
+      // 배송지
+      .delivery_address{
+        height: 200px;
+        .modal_btn{transform: translateX(-20px); font-size: $m_t_size_s;}
+      }
+    }
+    // 배송요청 사항
+    .request{
+      // 배송요청 사항 박스
+      height: 200px !important;
+      #de_request{
+        width: 100%;
+        font-size: $m_t_size_s;
+      }
+    }
+
+    // 결제수단
+    .payment_method{
+      .other_payment{
+        width: 100% !important;
+        border-top: 1px solid $g_color1;
+        text-indent: 20px;
+        line-height: 60px !important;
+        // 구분선
+        >label .fa-solid{text-indent: 0px;}
+        &::before{
+          display: none !important;
+        }
+      }
+
+    }
+    // 현금영수증
+    .receipt{
+      height: 200px !important;
+    }
+    // 배송
+    .delivery{height: 140px !important;}
+  }
+
+  // 모달
+  .del_modal_bg{
+    .modal{
+      width: $mobile_layout;
+      min-width: $min-width;
+      .modal_inner{
+        width: 90%;
+        > .modal_title{
+          >h3{font-size: $m_size_title_m;}
+          >i.fa-x{font-size: $m_size_title_xl !important;}
+        }
+        form{
+          input{
+            font-size: $m_t_size_s !important;
+            &[type='submit']{font-size: $m_t_size_s;}
+          }
+        }
+      }
+    }
+  }
+
+  .m_payment_box{
+    width: 100%;
+    height: 120px;  // 접힌 상태 기본 높이
+    background-color: $w_color;
+    // box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 -3px 3px rgba(0,0,0,.2);
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    z-index: 30000;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;   // ★ 아래로 붙이기
+    overflow: hidden;            // ★ 위쪽 내용 잘라내기
+    transition: height 0.3s ease;
+  
+    &.open {
+      height: 280px;  // 펼쳐진 상태 높이
+    }
+  
+    .m_payment{
+      width: $mobile_layout;
+      min-width: $min-width;
+      background-color: $g_color2;
+      margin: 20px auto 0 auto;
+      border-radius: 10px;
+      height: 130px;
+  
+      // flex 아이템이 찌그러지지 않게
+      flex: 0 0 auto;
+  
+      .m_payment_inner{
+        width: 90%;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+  
+        dl{
+          font-size: $m_t_size_m;
+          display: flex;
+          justify-content: space-between;
+          .sale{ color:$r_color3; }
+        }
+      }
+    }
+  
+    .m_payment_down{
+      width: $mobile_layout;
+      height: 120px;
+      margin: 0 auto;
+      flex: 0 0 auto;   // ★ 얘도 높이 유지
+  
+      .m_result_box{
+        width: $mobile_layout;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 auto;
+        height: 60px;
+  
+        .m_result{
+          font-size: $m_t_size_m;
+          i.fa-solid{
+            cursor: pointer;
+            font-size: $m_size_title_m;
+          }
+        }
+        > p{
+          font-size: $m_size_title_m;
+          font-weight: bold;
+        }
+      }
+  
+      input{
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        border: none;
+        background-color: $m_color;
+        color: $w_color;
+        font-size: $m_size_title_m;
+        cursor: pointer;
+  
+        &:hover{ background-color: #0076EB; }
+      }
+    }
+  }
+}

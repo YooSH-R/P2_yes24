@@ -1,0 +1,671 @@
+@use '_config' as *;
+
+
+// 헤더 푸터 영역 서식
+
+// 검색창 글자, familysite label 숨기기(최적화)
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+// 헤더 서식
+// 헤더 위쪽
+.header_outer_top{
+  width: 100%;
+  height: 100px;
+  min-width: $pc_layout;
+  border-bottom: 1px solid $g_color1;
+  background-color: $w_color;
+  .header_inner_top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: $pc_layout;
+    margin: 0px auto;
+    height: 100%;
+    // 로고 서식
+    .h_logo{
+      a{
+        img{width: 150px;}
+      }
+    }
+    // 검색바
+    .h_search_box{
+      width: 590px;height: 47px;
+      position: relative;
+      
+      #h_search{
+        width: 100%;height: 100%;
+        border-radius: 31px;
+        border: 1px solid $b_color1;
+        text-indent: 30px;
+      }
+      // 검색버튼
+        label{
+          position: absolute;
+          top: 50%; right: 20px;
+          transform: translateY(-50%);
+          cursor: pointer;
+          i.fas{
+            font-size: 20px;
+          }
+        }
+    }
+    // 우측 내비게이션(고객지원, 장바구니, 로그인)
+    .h_right_nav{
+      display: flex;
+      width: 190px;height: 47px;
+      justify-content: space-between;
+      position: relative;
+      >li{
+        width: 33.33%;
+        text-align: center;
+        i{
+          font-size: 20px;
+          height: 30px;
+        }
+        p{font-size: 12px;}
+
+        .h_cart_howmany{
+          font-size: $t_size_s;background-color: $m_color;
+          line-height: 20px;
+          height: 20px;
+          width: 20px;
+          display: block;
+          text-align: center;
+          position: absolute;
+          top: -10px;right: 65px;
+          border-radius: 50%;
+          color: $w_color;
+        }
+      }
+    }
+  }
+}
+
+// 헤더 아래쪽
+.header_outer_bottom{
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid $g_color3;
+  .header_inner_bottom{
+    width: $pc_layout;
+    margin: 0 auto;
+    display: flex;
+    // 토글버튼
+    .toggle_btn{
+      font-size: 28px;
+      margin-right: 40px;
+      line-height: 49px;
+      label{cursor: pointer;}
+    }
+    .header_bottom_nav{
+      display: flex;
+
+      li{
+        
+        font-size: $t_size_l;
+        font-weight: bold;
+        a{
+          display:inline-block;
+          width: 128px;line-height: 49px;
+          color: $b_color1;
+          text-align: center;
+          transition: 0.3s;
+          box-sizing:border-box;
+          // border: 1px solid $g_color1;
+          border-top: none;
+          &:hover{
+            background-color: $m_color;
+            color: $w_color;
+            border-top: none;
+            
+          }
+        }
+        
+      }
+    }
+  }
+}
+
+
+// 스크롤시 나올 헤더 서식
+.header_scroll{
+  display: none;
+  position: fixed;
+  left: 0px;
+  top:0px;
+  z-index:9999;
+  width: 100%;
+  min-width: $pc_layout;
+  height: 80px;
+  border-bottom: 1px solid $g_color1;
+  background-color: $w_color;
+  .header_scroll_top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: $pc_layout;
+    margin: 0 auto;
+    height: 100%;
+    .h_logo{
+      transform: translateX(-70px);
+      a{
+        img{width: 120px;}
+      }
+    }
+    // 토글 버튼
+    .toggle_btn{
+      font-size: 28px;
+      margin-right: 40px;
+      line-height: 49px;
+      label{cursor: pointer;}
+    }
+
+    // 검색바
+    .h_search_box{
+      width: 590px;height: 47px;
+      position: relative;
+      
+      #h_search2{
+        width: 100%;height: 100%;
+        border-radius: 31px;
+        border: 1px solid $b_color1;
+        text-indent: 30px;
+      }
+      // 검색버튼
+        label{
+          position: absolute;
+          top: 50%; right: 20px;
+          transform: translateY(-50%);
+          cursor: pointer;
+          i.fas{
+            font-size: 20px;
+          }
+        }
+    }
+
+    // 우측 내비게이션(고객지원, 장바구니, 로그인)
+    .h_right_nav{
+      display: flex;
+      width: 190px;height: 47px;
+      justify-content: space-between;
+      position: relative;
+      >li{
+        width: 33.33%;
+        text-align: center;
+        i{
+          font-size: 20px;
+          height: 30px;
+        }
+        p{font-size: 12px;}
+        .h_cart_howmany{
+          font-size: $t_size_s;background-color: $m_color;
+          line-height: 20px;
+          height: 20px;
+          width: 20px;
+          display: block;
+          text-align: center;
+          position: absolute;
+          top: -10px;right: 65px;
+          border-radius: 50%;
+          color: $w_color;
+        }
+      }
+    }
+  }
+}
+
+// 푸터 서식
+.footer_outer_top, .footer_outer_bottom{
+  width: 100%;
+  background-color: $g_color3;
+  min-width: $pc_layout;
+  margin: 0 auto;
+}
+// 푸터 위쪽 서식
+.footer_outer_top{
+  height: 60px;
+  border-bottom: 1px solid $g_color1;
+  
+  .footer_inner_top{
+    width: $pc_layout;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+    position: relative;
+    &::after {
+      content: "\f107";
+      content: "▼";
+      font-size: 12px;
+      color: #333;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    // 푸터 내비
+    .footer_nav > ul{
+      display: flex;
+      >li{
+        margin-right: 40px;
+        .f_nav_bold{
+          font-weight: bold;
+        }
+        a:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+
+    // 푸터 패밀리 사이트
+    #familySite{
+      width: 250px;
+      height: 45px;
+      border: 1px solid $g_color1;
+      border-radius: 10px;
+      text-indent: 15px;
+      color: $b_color1;
+      appearance: none;
+      position: relative;
+    }
+  }
+}
+// 탑버튼
+.top_btn{
+  position: fixed;
+  right: 50px;
+  bottom: 100px;
+  width: 48px;height: 48px;
+  border: 1px solid $g_color1;
+  border-radius: 8px;
+  background-color: $w_color;
+  display: none;
+  z-index: 10000;
+  cursor: pointer;
+  a{display: block; width: 100%;height: 100%;}
+  i{
+    font-size: 30px; position: absolute;
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+  }
+}
+// 푸터 아래쪽 서식
+.footer_outer_bottom{
+  height: 213px;
+  // 푸터 왼쪽 아래
+  .footer_inner_bottom{
+    width: $pc_layout;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+  .footer_inner_left{
+    // 푸터 로고
+    .footer_logo{
+      width: 120px;
+      padding: 20px 0px;
+      img{width: 100%;}
+    }
+    address{
+      font-size: $t_size_s;
+      line-height: 110%;
+    }
+    .copyright{
+      font-size: $t_size_s;
+      margin: 13px 0px;
+    }
+  }
+
+  // 푸터 오른쪽 아래
+  .footer_inner_right{
+    .f_sns_box{
+      margin: 20px 0px;
+      ul{
+        display: flex;
+        li{width: 35px; margin-left: 20px;}
+        img{width: 100%;}
+      }
+    }
+    .f_help_box{
+      position: absolute;
+      right: 0px;
+      bottom: 0px;
+
+      h3{
+        font-weight: bold;
+      }
+      .f_help{
+        font-size: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2열 */
+        gap: 12px 32px; /* 행 간격, 열 간격 */
+        margin: 10px 0px;
+        padding: 0;
+        dl{
+          display: flex;
+          justify-content: space-between;
+          dt{
+            margin-right: 3px;
+            a:hover{text-decoration: underline;}
+          }
+          dd{font-weight: bold;}
+        }
+      }
+    }
+  }
+}
+[hidden] {
+  display: none !important;
+}
+#toggle_btn:checked + .toggle_outer {
+  opacity: 1;
+  pointer-events: auto; // 배경 클릭 가능
+
+  .toggle_inner {
+    transform: translateX(0); 
+  }
+}
+// 토글 메뉴
+.toggle_outer{
+  width: 100%;height: 100%;
+  position: fixed;
+  background-color: rgba(0,0,0,.4);
+  left: 0px; top:0px;
+  z-index: 99999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+
+  .toggle_inner{
+    width: 400px;height: 100%;
+    background-color: $g_color2;
+    position: absolute;
+    left: 0px;top:0px;
+    transform: translateX(-100%);
+    transition: transform .3s ease;
+    //  어서오세요 / 로그인
+    .toggle_title{
+      position: relative;
+      width: 100%;
+      text-indent: 20px;
+      line-height: 65px;
+      font-size: $t_size_xl;
+      margin-top: 30px;
+      border-bottom: 1px solid $g_color1;
+      .user_name, .user_name a{
+        font-size: $t_size_title;
+        font-weight: bold;
+        color: $b_color2 !important;
+      }
+      >i.fa-x{position: absolute; top:0px; right: 30px; font-size: 24px; cursor: pointer;}
+    }
+    .first_cate{
+      width: 100%;
+      line-height: 65px;
+      font-size: $t_size_l;
+      text-indent: 20px;
+      >li{
+        &:first-child{border-bottom: 1px solid $g_color1;}
+        > p{font-weight: bold; color: $b_color2;}
+        >a{display: inline-block;width: 100%;text-indent:0px;color:$b_color2; font-weight: bold;}
+      }
+      .second_cate{
+        >li{
+          cursor: pointer;
+          &:hover{background-color: $w_color !important;}
+          >i{float: right; transform: translate(-40px,23px);}
+          .third_cate{
+            display: none;
+            background-color: $w_color;
+            font-size: $t_size_m;
+            line-height: 55px;
+            >li:hover{
+              text-decoration: underline;
+              & i.fa-angle-right{opacity: 1;}
+            }
+            i.fa-angle-right{
+              float: right;transform: translate(-40px,18px);
+              opacity: 0;
+              pointer-events: none;
+              transition: opacity .25s;
+            }
+          }
+        }
+        
+      }
+    }
+  }
+}
+
+// 모바일 헤더 서식
+.mb_index_header{
+  display: none;
+  width: 100%;
+  background-color: $w_color;
+  .mb_header_outer_top{
+    width: 100%;
+    height: 65px;
+    border-bottom: 1px solid $g_color1;
+    .mb_header_inner_top{
+      margin: 0 auto;
+      width: $mobile_layout;
+      min-width: $min-width;
+      display: flex;
+      justify-content: space-between;
+      line-height: 65px;
+      // 토글서식
+      .mb_toggle_btn{
+        font-size: 35px;
+        label{cursor: pointer;}
+      }
+      .mb_h_right_nav{
+        width: 160px;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        >li{
+          a{
+            font-size: 30px;
+          }
+          .mb_h_cart_howmany{
+            font-size: $m_t_size_s;
+            line-height: 18px;
+            width: 18px;
+            background-color: $m_color;
+            color:$w_color;
+            display: block;
+            position: absolute;
+            text-align: center;
+            border-radius: 50%;
+            top:5px;transform: translateX(25px);
+          }
+        }
+      }
+    }
+  }
+  .mb_header_outer_bottom{
+    width: 100%;
+    background-color: $w_color;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    top:0px;left:0px;
+    z-index: 1000;
+    justify-content: center;
+    // margin-bottom: 50px;
+    min-width: $min-width;
+    box-shadow: 0 3px 3px rgba(0,0,0,.2);
+    .mb_h_search_box{
+      width: $mobile_layout;
+      height: 50px;
+      min-width: $min-width;
+      position: relative;
+      
+      #mb_h_search{
+        width: 100%;
+        height: 100%;
+        border-radius: 50px !important;
+        border: 1px solid $g_color1;
+        text-indent: 60px;
+        font-size: $m_t_size_m;
+      }
+      label,.mb_h_logo,#mb_h_search{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      label{right:20px; font-size: 25px;}
+      .mb_h_logo{
+        left: 20px;
+        img{
+          width: 20px;
+        }
+      }
+    }
+  }
+}
+.mb_header_outer_bottom_placeholder{
+  display: none;
+}
+
+// .sub_header{display: block;}
+// 모바일 버전
+@media (max-width: 767px) {
+  // 모바일 버전 지울것
+  // 헤더 아이콘 밑 글자 
+  // 서브 배너
+  // 각 화살표 전부 제거
+  // 더보기
+  // 패밀리사이트
+  // 고객문의(푸터)
+  // sns
+
+  // 장바구니 개수
+  // 탑버튼
+  .top_btn{
+    width: 35px !important;height: 35px !important;
+    right: 20px !important;
+    a{
+      i{
+        font-size: 25px !important;
+      }
+    }
+  }
+
+  .ad_slide, .swiper-button-next,.swiper-button-prev,.goods_btn,.index_header, #familySite,.f_sns_box, .f_help_box, .sub_header{display: none !important;}
+  // 헤더 불러오기
+  .mb_index_header{
+    display: block;
+  }
+
+  .mb_header_outer_bottom_placeholder{
+    display: block;
+    height: 0px;
+  }
+
+
+
+  // 푸터 서식
+  // 푸터 위쪽
+  .footer_outer_top{border: none !important;height: 80px !important;}
+  .footer_outer_top, .footer_outer_bottom{
+    width: 100%;
+    min-width: $min-width !important;
+    font-size: $m_t_size_ss;
+    .footer_inner_top{
+      width: $mobile_layout !important;
+      height: 100% !important;
+      min-width: $min-width;
+      display: block;
+      &::after{display: none;}
+      .footer_nav{
+        margin:0 auto;
+        width: 360px;
+
+        > ul{
+        flex-wrap: wrap;
+        // background-color: #000;
+        width: 100%;
+        padding-top: 20px;
+        justify-content: center;
+          >li{
+            margin: 5px auto;
+            text-align: center;
+            &:nth-child(-n+3){
+              width: calc(100% / 3 );
+              transform: translateX(-9px);
+            }
+            &:nth-child(n+4){
+              width: calc(80% / 4);
+            }
+            a{
+              text-align: center;
+            }
+            
+          }
+        }
+      }
+    }
+  }
+  // 푸터 아래쪽
+  .footer_outer_bottom{
+    height: 180px !important;
+    .footer_inner_bottom{
+      width: $mobile_layout;
+      display: block;
+      position: relative;
+      height: 0px;
+      bottom: -110px;
+    }
+    .footer_inner_left{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      address{
+        width: $min-width;
+        position: absolute;
+        text-align: center;
+        left: 50%;transform: translate(-50%);
+        line-height: 18px;
+        top:-110px;
+      }
+      .footer_logo{
+        width: 70px;
+        padding-right: 10px;
+
+      }
+      .copyright{font-size: $m_t_size_ss !important;}
+    }
+  }
+
+
+  //토글
+  .toggle_inner{
+    width: 70% !important;
+    .toggle_title{
+      .user_name, .user_name a{
+        font-size: 1.5rem !important;
+      }
+      >i.fa-x{font-size: 1.5rem !important;}
+    }
+    .first_cate{
+      font-size: $m_t_size_m !important;
+    }
+    .third_cate{
+      font-size: $m_t_size_s;
+    }
+  }
+
+}
+

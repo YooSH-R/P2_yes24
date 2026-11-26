@@ -1,0 +1,82 @@
+
+// 변수들 모음
+
+// 구글폰트
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+// 기본 글꼴
+$font-family:'Nanum Gothic', sans-serif;
+
+// 글자크기 변수
+$t_size_s:12px;
+$t_size_m:14px;
+$t_size_l:16px;
+$t_size_xl:18px;
+$t_size_title:24px;
+$t_size_title_xl:32px;
+
+// 모바일 변수
+$m_t_size_s: 0.75rem;       //12px(가장 최소 단위)
+$m_t_size_m: 0.875rem;       //14px
+$m_t_size_l:1rem; //기준     //16px
+$m_size_title_m: 1.125rem;  //18px
+$m_size_title_xl:1.25rem;   //20px
+
+// 컬러 변수
+$m_color:#0080ff; // main
+
+
+// ***************변경사항: g_color1추가들로인한 숫자들 변경 r_color 추가
+$g_color1:#999; // 짙은 회색1
+$g_color2:#ccc; // 짙은 회색2
+$g_color3:#f5f5f5; // 옅은 회색1
+$g_color4:#e5e5e5; // 옅은 회색2
+$w_color:#fff; // white
+$b_color2:#111; // black 진함
+$b_color1:#333; // black 연함
+$r_color:#aa0000; // red
+$r_color3:#aa0000;
+
+// 레이아웃 크기 변수
+$pc_layout: 1180px;
+$mobile_layout: 92%;  //모바일 layout변수
+$min-width: 360px;
+
+// ***************변경사항: 버튼변수 추가, 크기 속성 등 추가
+// 버튼 변수
+@mixin btn{
+  width: 210px; height:50px;
+  border:1px solid $m_color;
+  border-radius: 30px;
+  font-size:$t_size_l;
+  display:flex;
+  justify-content: center; align-items: center;
+}
+
+// 흰색바탕 버튼
+@mixin btn_w{
+  @include btn;
+  background-color:$w_color;
+  color:$m_color;
+}
+// 하늘색바탕 버튼
+@mixin btn_b{
+  @include btn;
+  background-color:$m_color;
+  color:$w_color !important;
+}
+
+
+// 주문 예상금액 박스
+@mixin payment_list_box{
+  width: 783px; height: 100%;
+  border: 1px solid $g_color1;
+  border-radius: 9.9px;
+  margin-bottom: 30px;
+}
+
+@mixin mobile_layout{
+  min-width:$mobile_layout;
+  margin:0 auto;
+  padding:0;
+}
